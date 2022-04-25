@@ -1,0 +1,369 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class BMI{
+
+public:
+
+
+// Class Function for Pound
+
+    void setLb_weight(float Lb){
+        Lb_weight = Lb;
+    }
+    float getLb_weight(){
+        return Lb_weight;
+    }
+
+
+
+
+// Class Function for Meter
+      void setM_Height(float M){
+        M_height= M;
+    }
+    float getM_Height(){
+        return M_height;
+    }
+
+
+// Class Function for Foot and Inches = All Converted into Inches
+    void setFI_Height(float I){
+        FI_height = I;
+    }
+    float getFI_Height(){
+        return FI_height;
+    }
+
+private:
+    float Kg_weight;
+    float Lb_weight;
+    float M_height;
+    float FI_height;
+    float BMI;
+    int age;
+
+};
+
+
+class BMIKgM {
+
+public:
+
+
+
+    // Class Function for Kilogram
+    void setKg_Weight(float kg){
+
+        Kg_weight = kg;
+    }
+    float getKg_Weight(){
+        return Kg_weight;
+    }
+
+    // Class Function for Meter
+      void setM_Height(float M){
+        M_height= M;
+    }
+    float getM_Height(){
+        return M_height;
+    }
+
+    // Class Function for Age
+
+        void set_Age(int A){
+            age = A;
+        }
+
+        int get_Age(){
+            return age;
+        }
+    // Class Function for Name
+        void set_nname(string N){
+            Name = N;
+        }
+
+        string get_Name(){
+            return Name;
+        }
+
+
+private:
+        string Name;
+        float Kg_weight;
+        float M_height;
+        float BMI;
+        int age;
+};
+
+
+
+
+
+
+
+
+
+
+int loopdecider(string lp);
+string name_getter();
+int Age_getter();
+float BMI_setWeight();
+float BMI_setHeight();
+double BMI_inputWeight(double W);
+float BMI_inputHeight(float H);
+float BMI_Cmetric(float weight_v, float height_v);
+float BMI_Cimperial(float weight_va, float height_va);
+
+int main(){
+int lpd;
+
+ while( lpd != 1){
+
+
+
+            float weight_rValue;
+            weight_rValue = BMI_setWeight();
+
+            float height_rValue;
+            height_rValue = BMI_setHeight();
+
+
+            double weight_Value;
+            weight_Value = BMI_inputWeight(weight_rValue);
+            float height_Value;
+            height_Value = BMI_inputHeight(height_rValue);
+
+double BMII;
+
+
+if(weight_rValue == 0 && height_rValue == 0){
+    BMII = BMI_Cmetric(weight_Value, height_Value);
+
+} else if(weight_rValue == 1 && height_rValue == 1){
+
+    BMII = BMI_Cimperial(weight_Value, height_Value);
+}
+
+
+
+cout << "Your BMI is: " << BMII << endl;
+
+if (BMII <= 18.5){
+        cout << "Weight Status: Underweight" << endl;
+        }else if (BMII <=  24.9 ){
+        cout << "Weight Status: Normal weight" << endl;
+        }else if (BMII <= 29.9){
+        cout << "Weight Status: Overweight" << endl;
+        }else if (BMII <= 34.9 ){
+        cout << "Weight Status: Obesity Class I" << endl;
+       }else if (BMII<= 39.9){
+        cout << "Weight Status: Obesity Class II" << endl;
+       }else if (BMII < 40){
+        cout << "Weight Status: Obesity Class III" << endl;
+       }
+
+        name_getter();
+        Age_getter();
+
+        string DCR;
+
+    cout << "Do you still Want to Continue? (Y/N)" << endl;
+    cin >> DCR;
+    cout << "------------------------------------" << endl;
+
+       lpd = loopdecider(DCR);
+
+ }
+
+}
+
+
+
+
+
+
+// Loop Decider
+int loopdecider(string lp){
+
+    int ID;
+    string DCR;
+
+
+
+    if(lp == "Y"){
+        ID = 0;
+    }else if(lp == "N"){
+        ID = 1;
+
+    }else{
+
+        while(ID != 1 || ID != 0){
+
+            cout << "You have entered wrong Letter, Please Repeat: " << endl;
+            cin >> DCR;
+            cout << "----------------------------------------------" << endl;
+
+
+        if(DCR == "Y"){
+
+        ID = 0;
+
+        }else if(DCR == "N"){
+
+        ID = 1;
+
+        }else{
+        cout << "You have entered wrong Letter, Please Repeat: " << endl;
+        cin >> DCR;
+        cout << "----------------------------------------------" << endl;
+
+        }
+    }
+
+
+
+    }
+     return ID;
+}
+
+// Name Getter
+
+
+
+string name_getter(){
+    string Name;
+    cout << "Please Enter Name: ";
+    cin >> Name;
+
+    return Name;
+}
+
+// Age Getter
+int Age_getter(){
+    int Age;
+
+    cout << "Please Enter Age: ";
+    cin >> Age;
+
+    return Age;
+
+}
+
+// Data Setters
+float BMI_setWeight(){
+
+    string SW;
+    int ID;
+
+
+    cout << "Enter Unit for Weight\n";
+    cout << "-----------------------------" << endl;
+    cout << "Kg for Kilogram, Lb for Pound: ";
+    cin >> SW;
+    cout << "-----------------------------" << endl;
+
+    if(SW == "Kg"){
+        ID = 0;
+    }
+    else if(SW == "Lb"){
+        ID = 1;
+    }
+
+
+
+
+    return ID;
+}
+float BMI_setHeight(){
+    string SH;
+    float ID;
+
+     cout << "Enter Unit for Height" << endl;
+     cout << "------------------------------------" << endl;
+     cout <<" M for Meters and F for Foot and Inch: ";
+    cin >> SH;
+    cout << "------------------------------------" << endl;
+
+    if(SH == "M"){
+        ID = 0;
+    }
+    else if(SH == "F"){
+        ID = 1;
+    }
+
+    return ID;
+
+}
+
+// Data Input
+double BMI_inputWeight(double W){
+
+    double wValue;
+
+if(W == 0){
+    double Kg;
+    cout << "Please Enter Weight(Kilogram): ";
+    cin >> Kg;
+     wValue = Kg;
+
+}else if (W == 1){
+    double Lb;
+    cout << "Please Enter Weight(Pounds): ";
+    cin >> Lb;
+     wValue = Lb;
+}
+    cout << "Weight is: " << wValue << endl;
+    return wValue;
+}
+
+float BMI_inputHeight(float H){
+
+    float hValue;
+
+if(H == 0){
+    float M;
+    cout << "Please Enter Height(Meters): ";
+    cin >> M;
+     hValue = M;
+
+}else if (H == 1){
+    float Foot;
+    float Inches;
+
+    cout << "Please Enter Height: \n";
+    cout << "Feet: " << endl;
+    cin >> Foot;
+    cout << "Inches: " << endl;
+    cin >> Inches;
+
+    float cal;
+    float Tot;
+    cal = Foot * 12;
+    Tot = cal + Inches;
+    float hValue = Tot;
+}
+
+    return hValue;
+}
+
+// Calculators per Formula
+float BMI_Cmetric(float weight_v, float height_v){
+
+    float metric;
+    float pHeight = pow(height_v,2);
+    metric = weight_v / pHeight;
+
+    return metric;
+}
+float BMI_Cimperial(float weight_va, float height_va){
+    float Imperial;
+    float BMI;
+    float inchPow = pow(height_va,2);
+    float NumeratorWeight = weight_va * 703;
+
+    BMI = NumeratorWeight / inchPow;
+
+    return BMI;
+}
